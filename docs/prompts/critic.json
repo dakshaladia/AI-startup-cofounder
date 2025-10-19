@@ -1,0 +1,258 @@
+{
+  "id": "critic",
+  "version": "1.0.0",
+  "name": "Critic Agent",
+  "description": "Evaluates startup ideas and identifies weaknesses, risks, and improvement opportunities",
+  "system_prompt": "You are a Critic specializing in evaluating startup ideas and business concepts. Your role is to provide objective, constructive criticism and identify potential issues. You should assess feasibility, market viability, competitive positioning, and implementation challenges. Be thorough but fair in your evaluation, highlighting both strengths and weaknesses. Focus on actionable feedback that can improve the idea.",
+  "user_template": "Critically evaluate this startup idea:\n\nIdea: {idea}\n\nMarket Analysis: {market_analysis}\n\nPlease provide a comprehensive critique including:\n1. Strengths and positive aspects\n2. Weaknesses and potential issues\n3. Market viability assessment\n4. Competitive analysis\n5. Implementation challenges\n6. Risk factors\n7. Improvement suggestions\n8. Overall assessment",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "strengths": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "aspect": {"type": "string"},
+            "description": {"type": "string"},
+            "impact": {"type": "string"}
+          }
+        }
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "issue": {"type": "string"},
+            "description": {"type": "string"},
+            "severity": {"type": "string"},
+            "impact": {"type": "string"}
+          }
+        }
+      },
+      "market_viability": {
+        "type": "object",
+        "properties": {
+          "assessment": {"type": "string"},
+          "market_fit": {"type": "string"},
+          "customer_demand": {"type": "string"},
+          "market_timing": {"type": "string"}
+        }
+      },
+      "competitive_analysis": {
+        "type": "object",
+        "properties": {
+          "competitive_landscape": {"type": "string"},
+          "differentiation": {"type": "string"},
+          "competitive_advantages": {"type": "array", "items": {"type": "string"}},
+          "competitive_threats": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "implementation_challenges": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "challenge": {"type": "string"},
+            "description": {"type": "string"},
+            "severity": {"type": "string"},
+            "mitigation": {"type": "string"}
+          }
+        }
+      },
+      "risk_factors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {"type": "string"},
+            "description": {"type": "string"},
+            "probability": {"type": "string"},
+            "impact": {"type": "string"},
+            "mitigation": {"type": "string"}
+          }
+        }
+      },
+      "improvement_suggestions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area": {"type": "string"},
+            "suggestion": {"type": "string"},
+            "priority": {"type": "string"},
+            "expected_impact": {"type": "string"}
+          }
+        }
+      },
+      "overall_assessment": {
+        "type": "object",
+        "properties": {
+          "summary": {"type": "string"},
+          "recommendation": {"type": "string"},
+          "confidence_level": {"type": "string"},
+          "next_steps": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "scores": {
+        "type": "object",
+        "properties": {
+          "overall_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "feasibility_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "market_potential_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "innovation_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "competitive_advantage_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "implementation_score": {"type": "number", "minimum": 0, "maximum": 10}
+        }
+      }
+    },
+    "required": ["strengths", "weaknesses", "market_viability", "competitive_analysis", "overall_assessment", "scores"]
+  },
+  "examples": [
+    {
+      "input": {
+        "idea": {
+          "title": "AI-Powered Personal Finance Assistant",
+          "description": "An AI-powered mobile app that provides personalized financial advice",
+          "target_market": "Millennials",
+          "business_model": "Freemium SaaS"
+        },
+        "market_analysis": "Large market with high competition"
+      },
+      "output": {
+        "strengths": [
+          {
+            "aspect": "Market Opportunity",
+            "description": "Large addressable market with growing demand for financial services",
+            "impact": "High revenue potential"
+          },
+          {
+            "aspect": "Technology Differentiation",
+            "description": "AI-powered personalization provides unique value proposition",
+            "impact": "Competitive advantage"
+          }
+        ],
+        "weaknesses": [
+          {
+            "issue": "High Competition",
+            "description": "Established players like Mint and YNAB already dominate the market",
+            "severity": "High",
+            "impact": "Difficult user acquisition"
+          },
+          {
+            "issue": "Regulatory Complexity",
+            "description": "Financial services require extensive compliance and regulatory approval",
+            "severity": "High",
+            "impact": "Increased development time and costs"
+          }
+        ],
+        "market_viability": {
+          "assessment": "Moderate - large market but high competition",
+          "market_fit": "Good fit for target demographic",
+          "customer_demand": "High demand for financial tools",
+          "market_timing": "Good timing with AI adoption"
+        },
+        "competitive_analysis": {
+          "competitive_landscape": "Highly competitive with established players",
+          "differentiation": "AI personalization and real-time insights",
+          "competitive_advantages": [
+            "Advanced AI capabilities",
+            "Real-time financial insights",
+            "Gamified user experience"
+          ],
+          "competitive_threats": [
+            "Established market leaders",
+            "Big tech companies entering space",
+            "Regulatory barriers"
+          ]
+        },
+        "implementation_challenges": [
+          {
+            "challenge": "Regulatory Compliance",
+            "description": "Need to comply with financial regulations and data protection laws",
+            "severity": "High",
+            "mitigation": "Partner with established financial institutions"
+          },
+          {
+            "challenge": "User Acquisition",
+            "description": "High cost of acquiring users in competitive market",
+            "severity": "Medium",
+            "mitigation": "Focus on viral growth and partnerships"
+          }
+        ],
+        "risk_factors": [
+          {
+            "risk": "Regulatory Changes",
+            "description": "Changes in financial regulations could impact business model",
+            "probability": "Medium",
+            "impact": "High",
+            "mitigation": "Stay updated on regulatory changes and adapt quickly"
+          },
+          {
+            "risk": "Competition",
+            "description": "Large tech companies could enter the market",
+            "probability": "High",
+            "impact": "High",
+            "mitigation": "Focus on niche markets and unique features"
+          }
+        ],
+        "improvement_suggestions": [
+          {
+            "area": "Target Market",
+            "suggestion": "Focus on specific niche like freelancers or small business owners",
+            "priority": "High",
+            "expected_impact": "Reduced competition and clearer value proposition"
+          },
+          {
+            "area": "Technology",
+            "suggestion": "Integrate with existing financial tools and banks",
+            "priority": "Medium",
+            "expected_impact": "Easier user adoption and reduced friction"
+          }
+        ],
+        "overall_assessment": {
+          "summary": "Promising idea with good market potential but faces significant challenges",
+          "recommendation": "Proceed with caution, focus on niche market and regulatory compliance",
+          "confidence_level": "Medium",
+          "next_steps": [
+            "Conduct detailed market research",
+            "Develop regulatory compliance strategy",
+            "Create MVP for specific niche market"
+          ]
+        },
+        "scores": {
+          "overall_score": 6.5,
+          "feasibility_score": 5.0,
+          "market_potential_score": 8.0,
+          "innovation_score": 7.0,
+          "competitive_advantage_score": 6.0,
+          "implementation_score": 4.0
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "temperature": 0.4,
+    "max_tokens": 2500,
+    "top_p": 0.9,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "retry_config": {
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "exponential_backoff": true
+  },
+  "validation": {
+    "required_fields": ["strengths", "weaknesses", "market_viability", "competitive_analysis", "overall_assessment", "scores"],
+    "score_ranges": {
+      "overall_score": [0, 10],
+      "feasibility_score": [0, 10],
+      "market_potential_score": [0, 10],
+      "innovation_score": [0, 10],
+      "competitive_advantage_score": [0, 10],
+      "implementation_score": [0, 10]
+    }
+  }
+}

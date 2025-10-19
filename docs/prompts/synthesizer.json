@@ -1,0 +1,290 @@
+{
+  "id": "synthesizer",
+  "version": "1.0.0",
+  "name": "Synthesizer Agent",
+  "description": "Creates final polished startup concepts ready for presentation and implementation",
+  "system_prompt": "You are a Synthesizer specializing in creating final, polished startup ideas. Your role is to take refined ideas and create comprehensive, market-ready concepts that are well-structured, compelling, and ready for presentation to stakeholders. You should synthesize all the analysis, feedback, and refinements into a cohesive, professional startup concept.",
+  "user_template": "Synthesize this refined startup idea into a final, polished concept:\n\nRefined Idea: {refined_idea}\n\nMarket Analysis: {market_analysis}\n\nPlease create a comprehensive, market-ready startup concept that synthesizes all the analysis and refinements into a cohesive, compelling presentation.",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "final_concept": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "tagline": {"type": "string"},
+          "executive_summary": {"type": "string"},
+          "problem_statement": {"type": "string"},
+          "solution_description": {"type": "string"},
+          "target_market": {"type": "string"},
+          "target_customers": {"type": "string"},
+          "business_model": {"type": "string"},
+          "value_proposition": {"type": "string"},
+          "key_features": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "differentiators": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "technology_stack": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "go_to_market_strategy": {"type": "string"},
+          "revenue_model": {"type": "string"},
+          "implementation_timeline": {"type": "string"},
+          "success_metrics": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["title", "executive_summary", "problem_statement", "solution_description", "target_market", "business_model"]
+      },
+      "market_positioning": {
+        "type": "object",
+        "properties": {
+          "market_opportunity": {"type": "string"},
+          "competitive_advantage": {"type": "string"},
+          "market_entry_strategy": {"type": "string"},
+          "scaling_plan": {"type": "string"}
+        }
+      },
+      "implementation_roadmap": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "phase": {"type": "string"},
+            "duration": {"type": "string"},
+            "key_milestones": {"type": "array", "items": {"type": "string"}},
+            "deliverables": {"type": "array", "items": {"type": "string"}},
+            "success_criteria": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "risk_assessment": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {"type": "string"},
+            "description": {"type": "string"},
+            "probability": {"type": "string"},
+            "impact": {"type": "string"},
+            "mitigation": {"type": "string"}
+          }
+        }
+      },
+      "investment_requirements": {
+        "type": "object",
+        "properties": {
+          "funding_needed": {"type": "string"},
+          "funding_use": {"type": "string"},
+          "funding_timeline": {"type": "string"},
+          "expected_returns": {"type": "string"}
+        }
+      },
+      "final_scores": {
+        "type": "object",
+        "properties": {
+          "overall_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "feasibility_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "innovation_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "market_potential_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "competitive_advantage_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "implementation_score": {"type": "number", "minimum": 0, "maximum": 10}
+        }
+      },
+      "presentation_ready": {
+        "type": "object",
+        "properties": {
+          "elevator_pitch": {"type": "string"},
+          "key_selling_points": {"type": "array", "items": {"type": "string"}},
+          "demo_script": {"type": "string"},
+          "presentation_outline": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "required": ["final_concept", "market_positioning", "implementation_roadmap", "final_scores", "presentation_ready"]
+  },
+  "examples": [
+    {
+      "input": {
+        "refined_idea": {
+          "title": "Freelancer Finance AI",
+          "description": "AI-powered financial platform for freelancers with irregular income",
+          "target_market": "Freelancers and gig workers",
+          "business_model": "Freemium with premium features"
+        },
+        "market_analysis": {
+          "market_size": "$1.2 trillion gig economy",
+          "growth_rate": "15% annually",
+          "key_trends": ["Gig economy growth", "AI adoption", "Financial technology"]
+        }
+      },
+      "output": {
+        "final_concept": {
+          "title": "Freelancer Finance AI",
+          "tagline": "The AI financial assistant built for the gig economy",
+          "executive_summary": "Freelancer Finance AI is an AI-powered financial platform designed specifically for freelancers and gig workers. Our platform addresses the unique financial challenges of irregular income, providing intelligent budgeting, tax planning, and financial stability tools. With the gig economy growing at 15% annually and representing $1.2 trillion in economic activity, we're positioned to capture a significant market opportunity.",
+          "problem_statement": "Freelancers and gig workers face unique financial challenges including irregular income patterns, complex tax situations, and lack of financial stability. Traditional financial tools are designed for steady income and don't address these specific needs.",
+          "solution_description": "Our AI-powered platform provides personalized financial management for freelancers, including irregular income budgeting, tax estimation and planning, expense tracking for business deductions, and income smoothing recommendations.",
+          "target_market": "Freelancers and gig economy workers",
+          "target_customers": "Independent contractors, freelancers, and gig economy workers aged 25-45",
+          "business_model": "Freemium SaaS with premium features for tax planning and business tools",
+          "value_proposition": "Financial stability and peace of mind for the gig economy",
+          "key_features": [
+            "AI-powered irregular income budgeting",
+            "Automated tax estimation and planning",
+            "Business expense tracking and categorization",
+            "Income smoothing and stability recommendations",
+            "Integration with gig economy platforms"
+          ],
+          "differentiators": [
+            "Built specifically for freelancers",
+            "Handles irregular income patterns",
+            "Integrated tax planning and preparation",
+            "Gig economy focused features",
+            "AI-powered personalization"
+          ],
+          "technology_stack": [
+            "Machine Learning for income prediction",
+            "Mobile app development (iOS/Android)",
+            "Tax API integration",
+            "Cloud infrastructure (AWS/Azure)",
+            "Data analytics and reporting"
+          ],
+          "go_to_market_strategy": "Direct-to-consumer through freelancer communities, gig economy platforms, and social media marketing",
+          "revenue_model": "Subscription fees ($9.99/month premium) and tax preparation commissions",
+          "implementation_timeline": "6 months MVP, 12 months full platform",
+          "success_metrics": [
+            "User acquisition rate",
+            "Monthly active users",
+            "Revenue per user",
+            "Tax savings generated",
+            "User retention rate"
+          ]
+        },
+        "market_positioning": {
+          "market_opportunity": "Large and growing gig economy with underserved financial needs",
+          "competitive_advantage": "First-mover advantage in freelancer-specific financial tools",
+          "market_entry_strategy": "Start with freelancer communities and expand to broader gig economy",
+          "scaling_plan": "Geographic expansion and feature development based on user feedback"
+        },
+        "implementation_roadmap": [
+          {
+            "phase": "MVP Development",
+            "duration": "3 months",
+            "key_milestones": [
+              "Core budgeting features",
+              "Basic tax estimation",
+              "Mobile app launch"
+            ],
+            "deliverables": [
+              "iOS/Android app",
+              "Basic AI features",
+              "User onboarding flow"
+            ],
+            "success_criteria": [
+              "100 beta users",
+              "Core features working",
+              "Positive user feedback"
+            ]
+          },
+          {
+            "phase": "Feature Expansion",
+            "duration": "3 months",
+            "key_milestones": [
+              "Advanced tax planning",
+              "Expense tracking",
+              "Income smoothing"
+            ],
+            "deliverables": [
+              "Premium features",
+              "Tax integration",
+              "Analytics dashboard"
+            ],
+            "success_criteria": [
+              "500 active users",
+              "Premium conversion rate >10%",
+              "User retention >70%"
+            ]
+          }
+        ],
+        "risk_assessment": [
+          {
+            "risk": "Competition from established players",
+            "description": "Large financial companies could enter the freelancer market",
+            "probability": "Medium",
+            "impact": "High",
+            "mitigation": "Focus on niche features and rapid innovation"
+          },
+          {
+            "risk": "Regulatory changes",
+            "description": "Changes in tax laws or gig economy regulations",
+            "probability": "Low",
+            "impact": "Medium",
+            "mitigation": "Stay updated on regulatory changes and adapt quickly"
+          }
+        ],
+        "investment_requirements": {
+          "funding_needed": "$500K seed round",
+          "funding_use": "Product development, team expansion, marketing",
+          "funding_timeline": "6 months to break even",
+          "expected_returns": "10x return within 3 years"
+        },
+        "final_scores": {
+          "overall_score": 8.5,
+          "feasibility_score": 8.0,
+          "innovation_score": 9.0,
+          "market_potential_score": 8.5,
+          "competitive_advantage_score": 8.0,
+          "implementation_score": 7.5
+        },
+        "presentation_ready": {
+          "elevator_pitch": "Freelancer Finance AI is the first AI-powered financial platform built specifically for freelancers and gig workers. We solve the unique challenge of managing irregular income with intelligent budgeting, tax planning, and financial stability tools. With the gig economy growing at 15% annually, we're positioned to capture a $1.2 trillion market opportunity.",
+          "key_selling_points": [
+            "First-mover advantage in freelancer financial tools",
+            "AI-powered personalization for irregular income",
+            "Integrated tax planning and preparation",
+            "Large and growing market opportunity",
+            "Experienced team with fintech background"
+          ],
+          "demo_script": "Show irregular income budgeting, tax estimation, and expense tracking features",
+          "presentation_outline": [
+            "Problem and market opportunity",
+            "Solution and key features",
+            "Business model and revenue",
+            "Implementation roadmap",
+            "Team and funding requirements"
+          ]
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "temperature": 0.5,
+    "max_tokens": 3000,
+    "top_p": 0.9,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "retry_config": {
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "exponential_backoff": true
+  },
+  "validation": {
+    "required_fields": ["final_concept", "market_positioning", "implementation_roadmap", "final_scores", "presentation_ready"],
+    "score_ranges": {
+      "overall_score": [0, 10],
+      "feasibility_score": [0, 10],
+      "innovation_score": [0, 10],
+      "market_potential_score": [0, 10],
+      "competitive_advantage_score": [0, 10],
+      "implementation_score": [0, 10]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+# AI Startup Co-Founder Ingestion Requirements
+
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# PDF processing
+PyMuPDF==1.24.0
+pdfplumber==0.10.3
+pytesseract==0.3.10
+
+# Image processing
+Pillow==10.4.0
+opencv-python==4.6.0.66
+numpy==1.26.4
+
+# Web scraping
+aiohttp==3.9.1
+beautifulsoup4==4.12.2
+lxml==4.9.3
+feedparser==6.0.10
+
+# OCR and text processing
+pytesseract==0.3.10
+paddleocr==2.7.3
+
+# AI and ML
+transformers==4.36.0
+torch==2.6.0
+sentence-transformers==2.2.2
+# clip-by-openai==1.0.1  # Commented out due to dependency conflicts
+
+# Database and storage
+asyncpg==0.29.0
+redis==5.0.1
+aiofiles==23.2.1
+
+# Vector databases
+faiss-cpu==1.12.0
+pinecone-client==2.2.4
+weaviate-client==3.25.3
+
+# HTTP and API
+httpx==0.25.2
+requests==2.31.0
+
+# CLI and utilities
+click==8.1.7
+python-dotenv==1.0.0
+python-magic==0.4.27
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+flake8==6.1.0
+
+# Data processing
+pandas==2.2.0
+scikit-learn==1.4.2
+
+# Logging and monitoring
+structlog==23.2.0

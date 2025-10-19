@@ -1,0 +1,132 @@
+{
+  "id": "idea_generator",
+  "version": "1.0.0",
+  "name": "Idea Generator Agent",
+  "description": "Generates innovative startup ideas based on market analysis and constraints",
+  "system_prompt": "You are an Idea Generator specializing in creating innovative startup ideas. Your role is to generate creative, feasible, and market-relevant startup concepts. You should consider market opportunities, technology trends, and user needs. Focus on ideas that are innovative, scalable, and have clear value propositions. Generate ideas that are both creative and practical.",
+  "user_template": "Generate {num_ideas} startup ideas for: {topic}\n\nMarket Analysis: {market_analysis}\nConstraints: {constraints}\n\nFor each idea, provide:\n1. A compelling title and tagline\n2. Clear problem statement\n3. Solution description\n4. Target market and customers\n5. Business model\n6. Key features and differentiators\n7. Technology requirements\n8. Go-to-market strategy\n9. Revenue potential\n10. Implementation timeline",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "ideas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "tagline": {"type": "string"},
+            "problem": {"type": "string"},
+            "solution": {"type": "string"},
+            "target_market": {"type": "string"},
+            "target_customers": {"type": "string"},
+            "business_model": {"type": "string"},
+            "value_proposition": {"type": "string"},
+            "key_features": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "differentiators": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "technology_requirements": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "go_to_market": {"type": "string"},
+            "revenue_model": {"type": "string"},
+            "implementation_timeline": {"type": "string"},
+            "success_metrics": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "feasibility_score": {"type": "number", "minimum": 0, "maximum": 10},
+            "innovation_score": {"type": "number", "minimum": 0, "maximum": 10},
+            "market_potential_score": {"type": "number", "minimum": 0, "maximum": 10}
+          },
+          "required": ["title", "problem", "solution", "target_market", "business_model"]
+        }
+      }
+    },
+    "required": ["ideas"]
+  },
+  "examples": [
+    {
+      "input": {
+        "topic": "AI-powered personal finance",
+        "market_analysis": "Large market with high demand for personalized financial services",
+        "constraints": {"technology_stack": ["AI/ML", "Mobile"], "target_audience": "millennials"}
+      },
+      "output": {
+        "ideas": [
+          {
+            "title": "FinAI Personal Finance Assistant",
+            "tagline": "Your AI-powered financial advisor in your pocket",
+            "problem": "Millennials struggle with financial planning and lack personalized advice",
+            "solution": "AI-powered mobile app that provides personalized financial advice and automated budgeting",
+            "target_market": "Tech-savvy millennials aged 25-40",
+            "target_customers": "Young professionals with disposable income",
+            "business_model": "Freemium SaaS with premium features",
+            "value_proposition": "Personalized financial advice at scale",
+            "key_features": [
+              "AI-powered budget analysis",
+              "Automated savings recommendations",
+              "Investment advice",
+              "Bill tracking and reminders"
+            ],
+            "differentiators": [
+              "Advanced AI personalization",
+              "Real-time financial insights",
+              "Integration with all major banks",
+              "Gamified financial goals"
+            ],
+            "technology_requirements": [
+              "Machine Learning models",
+              "Mobile app development",
+              "Banking API integration",
+              "Cloud infrastructure"
+            ],
+            "go_to_market": "Direct-to-consumer through app stores",
+            "revenue_model": "Subscription fees and transaction commissions",
+            "implementation_timeline": "6-12 months",
+            "success_metrics": [
+              "User acquisition rate",
+              "Monthly active users",
+              "Revenue per user",
+              "Customer satisfaction"
+            ],
+            "feasibility_score": 8.0,
+            "innovation_score": 9.0,
+            "market_potential_score": 8.5
+          }
+        ]
+      }
+    }
+  ],
+  "parameters": {
+    "temperature": 0.8,
+    "max_tokens": 3000,
+    "top_p": 0.9,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "retry_config": {
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "exponential_backoff": true
+  },
+  "validation": {
+    "required_fields": ["ideas"],
+    "idea_requirements": {
+      "min_title_length": 5,
+      "max_title_length": 100,
+      "min_description_length": 50,
+      "max_description_length": 500
+    },
+    "score_ranges": {
+      "feasibility_score": [0, 10],
+      "innovation_score": [0, 10],
+      "market_potential_score": [0, 10]
+    }
+  }
+}

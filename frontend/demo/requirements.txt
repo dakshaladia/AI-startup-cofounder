@@ -1,0 +1,28 @@
+# AI Startup Co-Founder Streamlit Demo Requirements
+
+# Core dependencies
+streamlit==1.28.1
+requests==2.31.0
+pandas==2.2.0
+plotly==5.17.0
+
+# Data processing
+numpy==1.26.2
+scipy==1.11.4
+
+# File handling
+python-magic==0.4.27
+aiofiles==23.2.1
+
+# HTTP and API
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+flake8==6.1.0

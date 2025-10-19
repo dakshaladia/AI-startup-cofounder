@@ -1,0 +1,243 @@
+{
+  "id": "pm_refiner",
+  "version": "1.0.0",
+  "name": "PM Refiner Agent",
+  "description": "Refines startup ideas based on critique and constraints to improve feasibility and market fit",
+  "system_prompt": "You are a PM Refiner specializing in refining startup ideas and business concepts. Your role is to take feedback and critiques to improve ideas, making them more viable, market-ready, and implementable. You should focus on practical improvements while maintaining the core vision and value proposition. Balance creativity with feasibility.",
+  "user_template": "Refine this startup idea based on the critique and feedback:\n\nOriginal Idea: {idea}\n\nCritique: {critique}\n\nConstraints: {constraints}\n\nPlease provide a refined version that addresses the identified issues while maintaining the core concept and improving upon the weaknesses.",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "refined_idea": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "tagline": {"type": "string"},
+          "problem": {"type": "string"},
+          "solution": {"type": "string"},
+          "target_market": {"type": "string"},
+          "target_customers": {"type": "string"},
+          "business_model": {"type": "string"},
+          "value_proposition": {"type": "string"},
+          "key_features": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "differentiators": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "technology_requirements": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "go_to_market": {"type": "string"},
+          "revenue_model": {"type": "string"},
+          "implementation_timeline": {"type": "string"},
+          "success_metrics": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["title", "problem", "solution", "target_market", "business_model"]
+      },
+      "refinements_made": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area": {"type": "string"},
+            "original": {"type": "string"},
+            "refined": {"type": "string"},
+            "reasoning": {"type": "string"}
+          }
+        }
+      },
+      "addressed_issues": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "issue": {"type": "string"},
+            "solution": {"type": "string"},
+            "impact": {"type": "string"}
+          }
+        }
+      },
+      "improvement_summary": {
+        "type": "object",
+        "properties": {
+          "key_improvements": {"type": "array", "items": {"type": "string"}},
+          "maintained_aspects": {"type": "array", "items": {"type": "string"}},
+          "new_considerations": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "refined_scores": {
+        "type": "object",
+        "properties": {
+          "feasibility_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "innovation_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "market_potential_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "overall_score": {"type": "number", "minimum": 0, "maximum": 10}
+        }
+      }
+    },
+    "required": ["refined_idea", "refinements_made", "addressed_issues", "improvement_summary", "refined_scores"]
+  },
+  "examples": [
+    {
+      "input": {
+        "idea": {
+          "title": "AI-Powered Personal Finance Assistant",
+          "description": "An AI-powered mobile app that provides personalized financial advice",
+          "target_market": "Millennials",
+          "business_model": "Freemium SaaS"
+        },
+        "critique": {
+          "weaknesses": [
+            {
+              "issue": "High Competition",
+              "description": "Established players like Mint and YNAB already dominate the market",
+              "severity": "High"
+            },
+            {
+              "issue": "Regulatory Complexity",
+              "description": "Financial services require extensive compliance and regulatory approval",
+              "severity": "High"
+            }
+          ],
+          "improvement_suggestions": [
+            {
+              "area": "Target Market",
+              "suggestion": "Focus on specific niche like freelancers or small business owners",
+              "priority": "High"
+            }
+          ]
+        },
+        "constraints": {
+          "technology_stack": ["AI/ML", "Mobile"],
+          "budget_range": "Seed ($10K-100K)",
+          "timeline": "6 months"
+        }
+      },
+      "output": {
+        "refined_idea": {
+          "title": "Freelancer Finance AI",
+          "tagline": "The AI financial assistant built for freelancers and gig workers",
+          "problem": "Freelancers struggle with irregular income, tax planning, and financial stability",
+          "solution": "AI-powered financial platform specifically designed for freelancers with irregular income patterns",
+          "target_market": "Freelancers and gig workers",
+          "target_customers": "Independent contractors, freelancers, and gig economy workers",
+          "business_model": "Freemium with premium features for tax planning and business tools",
+          "value_proposition": "Financial stability for the gig economy",
+          "key_features": [
+            "Irregular income budgeting",
+            "Tax estimation and planning",
+            "Expense tracking for business deductions",
+            "Income smoothing recommendations"
+          ],
+          "differentiators": [
+            "Built specifically for freelancers",
+            "Handles irregular income patterns",
+            "Integrated tax planning",
+            "Gig economy focused features"
+          ],
+          "technology_requirements": [
+            "Machine Learning for income prediction",
+            "Mobile app development",
+            "Tax API integration",
+            "Cloud infrastructure"
+          ],
+          "go_to_market": "Direct-to-consumer through freelancer communities and platforms",
+          "revenue_model": "Subscription fees and tax preparation commissions",
+          "implementation_timeline": "6 months MVP",
+          "success_metrics": [
+            "User acquisition rate",
+            "Monthly active users",
+            "Revenue per user",
+            "Tax savings generated"
+          ]
+        },
+        "refinements_made": [
+          {
+            "area": "Target Market",
+            "original": "General millennials",
+            "refined": "Freelancers and gig workers",
+            "reasoning": "More specific niche reduces competition and provides clearer value proposition"
+          },
+          {
+            "area": "Problem Statement",
+            "original": "General financial planning",
+            "refined": "Irregular income and tax planning for freelancers",
+            "reasoning": "More specific problem that existing solutions don't address well"
+          },
+          {
+            "area": "Business Model",
+            "original": "General freemium",
+            "refined": "Freemium with tax planning focus",
+            "reasoning": "Tax planning provides higher value and revenue potential"
+          }
+        ],
+        "addressed_issues": [
+          {
+            "issue": "High Competition",
+            "solution": "Focused on specific niche of freelancers",
+            "impact": "Reduced competition and clearer differentiation"
+          },
+          {
+            "issue": "Regulatory Complexity",
+            "solution": "Partner with existing tax services and focus on planning rather than execution",
+            "impact": "Reduced regulatory burden while maintaining value"
+          }
+        ],
+        "improvement_summary": {
+          "key_improvements": [
+            "Narrowed target market to freelancers",
+            "Focused on irregular income challenges",
+            "Added tax planning as key differentiator",
+            "Simplified regulatory requirements"
+          ],
+          "maintained_aspects": [
+            "AI-powered personalization",
+            "Mobile-first approach",
+            "Freemium business model",
+            "User-friendly interface"
+          ],
+          "new_considerations": [
+            "Partnership with tax services",
+            "Integration with gig economy platforms",
+            "Seasonal revenue patterns",
+            "Tax compliance requirements"
+          ]
+        },
+        "refined_scores": {
+          "feasibility_score": 7.5,
+          "innovation_score": 8.0,
+          "market_potential_score": 7.0,
+          "overall_score": 7.5
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "temperature": 0.6,
+    "max_tokens": 2500,
+    "top_p": 0.9,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "retry_config": {
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "exponential_backoff": true
+  },
+  "validation": {
+    "required_fields": ["refined_idea", "refinements_made", "addressed_issues", "improvement_summary", "refined_scores"],
+    "score_ranges": {
+      "feasibility_score": [0, 10],
+      "innovation_score": [0, 10],
+      "market_potential_score": [0, 10],
+      "overall_score": [0, 10]
+    }
+  }
+}

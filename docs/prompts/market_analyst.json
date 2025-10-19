@@ -1,0 +1,172 @@
+{
+  "id": "market_analyst",
+  "version": "1.0.0",
+  "name": "Market Analyst Agent",
+  "description": "Analyzes market conditions, trends, and opportunities for startup ideas",
+  "system_prompt": "You are a Market Analyst specializing in startup ecosystems and technology trends. Your role is to analyze market conditions, identify opportunities, and assess market potential. You should provide data-driven insights and market intelligence. Focus on actionable insights that can inform startup idea generation.",
+  "user_template": "Analyze the market for: {topic}\n\nConstraints: {constraints}\n\nPlease provide a comprehensive market analysis including:\n1. Market size and growth potential\n2. Key trends and opportunities\n3. Competitive landscape\n4. Target customer segments\n5. Market barriers and challenges\n6. Regulatory environment\n7. Technology adoption trends\n8. Investment climate",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "market_size": {
+        "type": "object",
+        "properties": {
+          "current_size": {"type": "string"},
+          "growth_rate": {"type": "string"},
+          "projected_size": {"type": "string"}
+        }
+      },
+      "key_trends": {
+        "type": "array",
+        "items": {"type": "string"}
+      },
+      "opportunities": {
+        "type": "array",
+        "items": {"type": "string"}
+      },
+      "competitive_landscape": {
+        "type": "object",
+        "properties": {
+          "major_players": {"type": "array", "items": {"type": "string"}},
+          "competition_level": {"type": "string"},
+          "market_share_distribution": {"type": "string"}
+        }
+      },
+      "target_segments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "segment": {"type": "string"},
+            "size": {"type": "string"},
+            "characteristics": {"type": "string"}
+          }
+        }
+      },
+      "barriers": {
+        "type": "array",
+        "items": {"type": "string"}
+      },
+      "regulatory_environment": {
+        "type": "object",
+        "properties": {
+          "key_regulations": {"type": "array", "items": {"type": "string"}},
+          "compliance_requirements": {"type": "string"},
+          "regulatory_trends": {"type": "string"}
+        }
+      },
+      "technology_adoption": {
+        "type": "object",
+        "properties": {
+          "adoption_rate": {"type": "string"},
+          "key_technologies": {"type": "array", "items": {"type": "string"}},
+          "adoption_barriers": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "investment_climate": {
+        "type": "object",
+        "properties": {
+          "funding_availability": {"type": "string"},
+          "investor_interest": {"type": "string"},
+          "valuation_trends": {"type": "string"},
+          "funding_stages": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "market_score": {
+        "type": "object",
+        "properties": {
+          "overall_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "opportunity_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "competition_score": {"type": "number", "minimum": 0, "maximum": 10},
+          "barrier_score": {"type": "number", "minimum": 0, "maximum": 10}
+        }
+      }
+    },
+    "required": ["market_size", "key_trends", "opportunities", "competitive_landscape", "target_segments", "market_score"]
+  },
+  "examples": [
+    {
+      "input": {
+        "topic": "AI-powered personal finance",
+        "constraints": {"market_focus": "fintech", "target_audience": "millennials"}
+      },
+      "output": {
+        "market_size": {
+          "current_size": "$1.2 trillion",
+          "growth_rate": "15% annually",
+          "projected_size": "$2.8 trillion by 2030"
+        },
+        "key_trends": [
+          "AI adoption in financial services",
+          "Personalization of financial advice",
+          "Mobile-first financial tools"
+        ],
+        "opportunities": [
+          "Underserved millennial market",
+          "Integration with existing banking",
+          "Regulatory support for fintech"
+        ],
+        "competitive_landscape": {
+          "major_players": ["Mint", "YNAB", "Personal Capital"],
+          "competition_level": "High",
+          "market_share_distribution": "Fragmented with no dominant player"
+        },
+        "target_segments": [
+          {
+            "segment": "Tech-savvy millennials",
+            "size": "72 million",
+            "characteristics": "Digital natives, value convenience, price-sensitive"
+          }
+        ],
+        "barriers": [
+          "Regulatory compliance",
+          "Data privacy concerns",
+          "User acquisition costs"
+        ],
+        "regulatory_environment": {
+          "key_regulations": ["GDPR", "CCPA", "PCI DSS"],
+          "compliance_requirements": "High",
+          "regulatory_trends": "Increasing focus on data protection"
+        },
+        "technology_adoption": {
+          "adoption_rate": "High",
+          "key_technologies": ["AI/ML", "Open Banking", "Blockchain"],
+          "adoption_barriers": ["Trust", "Complexity", "Cost"]
+        },
+        "investment_climate": {
+          "funding_availability": "High",
+          "investor_interest": "Strong",
+          "valuation_trends": "Increasing",
+          "funding_stages": ["Seed", "Series A", "Series B"]
+        },
+        "market_score": {
+          "overall_score": 8.5,
+          "opportunity_score": 9.0,
+          "competition_score": 7.0,
+          "barrier_score": 6.0
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "temperature": 0.3,
+    "max_tokens": 2000,
+    "top_p": 0.9,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "retry_config": {
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "exponential_backoff": true
+  },
+  "validation": {
+    "required_fields": ["market_size", "key_trends", "opportunities"],
+    "score_ranges": {
+      "overall_score": [0, 10],
+      "opportunity_score": [0, 10],
+      "competition_score": [0, 10],
+      "barrier_score": [0, 10]
+    }
+  }
+}
