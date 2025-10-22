@@ -4,7 +4,7 @@ Configuration management for the AI Startup Co-Founder backend service.
 
 import os
 from typing import List, Optional
-from pydantic import field_validator
+from pydantic import validator
 from pydantic_settings import BaseSettings
 
 
@@ -89,56 +89,45 @@ class Settings(BaseSettings):
     MOCK_LLM: bool = False
     MOCK_EMBEDDINGS: bool = False
     
-    @field_validator("CORS_ORIGINS", mode="before")
-    @classmethod
+    @validator("CORS_ORIGINS", pre=True)
     def parse_cors_origins(cls, v):
         if isinstance(v, str):
-            # Handle empty string case
-            if not v or v.strip() == "":
-                return ["http://localhost:3000", "http://localhost:8501"]
-            return [origin.strip() for origin in v.split(",") if origin.strip()]
+            return [origin.strip() for origin in v.split(",")]
         return v
     
-    @field_validator("DEBUG", mode="before")
-    @classmethod
+    @validator("DEBUG", pre=True)
     def parse_debug(cls, v):
         if isinstance(v, str):
             return v.lower() in ("true", "1", "yes")
         return v
     
-    @field_validator("AUTO_RELOAD", mode="before")
-    @classmethod
+    @validator("AUTO_RELOAD", pre=True)
     def parse_auto_reload(cls, v):
         if isinstance(v, str):
             return v.lower() in ("true", "1", "yes")
         return v
     
-    @field_validator("ENABLE_METRICS", mode="before")
-    @classmethod
+    @validator("ENABLE_METRICS", pre=True)
     def parse_enable_metrics(cls, v):
         if isinstance(v, str):
             return v.lower() in ("true", "1", "yes")
         return v
     
-    @field_validator("MOCK_LLM", mode="before")
-    @classmethod
+    @validator("MOCK_LLM", pre=True)
     def parse_mock_llm(cls, v):
         if isinstance(v, str):
             return v.lower() in ("true", "1", "yes")
         return v
     
-    @field_validator("MOCK_EMBEDDINGS", mode="before")
-    @classmethod
+    @validator("MOCK_EMBEDDINGS", pre=True)
     def parse_mock_embeddings(cls, v):
         if isinstance(v, str):
             return v.lower() in ("true", "1", "yes")
         return v
     
-    model_config = {
-        "env_file": ".env",
-        "case_sensitive": True,
-        "extra": "ignore"
-    }
+    class Config:
+        env_file = ".env"
+        case_sensitive = True
 
 
 # Global settings instance

@@ -56,29 +56,26 @@ export default function IdeaGenerator({ onGenerate, isGenerating }: IdeaGenerato
     <div className="max-w-4xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Main Topic Input */}
-        <div className="card">
-          <div className="mb-4">
-            <label htmlFor="topic" className="block text-sm font-medium text-gray-700 mb-2">
-              What startup idea would you like to explore?
+        <div className="card border-none shadow-none bg-transparent p-0">
+          <div className="mb-6">
+            <label htmlFor="topic" className="block text-sm font-medium text-gray-500 mb-3">
+              What would you like to build?
             </label>
-            <div className="relative">
-              <input
-                type="text"
-                id="topic"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                placeholder="e.g., AI-powered personal finance, sustainable transportation, healthcare innovation..."
-                className="input pl-10"
-                required
-              />
-              <LightBulbIcon className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-            </div>
+            <input
+              type="text"
+              id="topic"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder="AI-powered personal finance, sustainable transportation, healthcare innovation..."
+              className="input text-lg py-3 border-gray-200 focus:border-gray-400 focus:ring-0"
+              required
+            />
           </div>
           
           <button
             type="button"
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+            className="text-sm text-gray-500 hover:text-gray-900 font-medium transition-colors"
           >
             {showAdvanced ? 'Hide' : 'Show'} advanced options
           </button>
@@ -215,19 +212,15 @@ export default function IdeaGenerator({ onGenerate, isGenerating }: IdeaGenerato
           <button
             type="submit"
             disabled={!topic.trim() || isGenerating}
-            className="btn btn-primary px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gray-900 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-base"
           >
             {isGenerating ? (
-              <div className="flex items-center space-x-2">
-                <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Generating Ideas...</span>
+              <div className="flex items-center space-x-3">
+                <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span>Generating...</span>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
-                <SparklesIcon className="h-5 w-5" />
-                <span>Generate Ideas</span>
-                <ArrowRightIcon className="h-5 w-5" />
-              </div>
+              <span>Generate Ideas</span>
             )}
           </button>
         </div>

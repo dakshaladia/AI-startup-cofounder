@@ -1,0 +1,16 @@
+   # Test with different topics
+   curl -X POST "http://localhost:8000/api/v1/ideas/generate" \
+     -H "Content-Type: application/json" \
+     -d '{"topic": "sustainable technology", "num_ideas": 3}'
+
+    curl -X POST "http://localhost:8000/api/v1/ideas/generate" \
+    -H "Content-Type: application/json" \
+    -d '{
+    "topic": "AI-powered fitness apps",
+    "constraints": {
+    "target_market": "fitness enthusiasts",
+    "budget_range": "low",
+    "timeline": "3-6 months"
+    },
+    "num_ideas": 2
+    }'

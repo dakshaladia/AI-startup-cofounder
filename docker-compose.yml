@@ -43,6 +43,12 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - VECTOR_DB_TYPE=faiss
       - VECTOR_DB_PATH=/app/data/faiss_index
+      - CORS_ORIGINS=["http://localhost:3000","http://localhost:8501"]
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - LLM_PROVIDER=gemini
+      - LLM_MODEL=gemini-2.0-flash-lite
+      - TEXT_EMBEDDING_MODEL=text-embedding-004
+      - TEXT_EMBEDDING_DIMENSION=768
     volumes:
       - ./data:/app/data
       - ./services/backend:/app

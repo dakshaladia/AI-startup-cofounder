@@ -25,7 +25,7 @@ class GenerateResponse(BaseModel):
 
 class IterateResponse(BaseModel):
     """Response model for idea iteration."""
-    idea: IdeaSnapshot
+    updated_idea: IdeaSnapshot
     iteration_id: str
     created_at: datetime
 
@@ -61,7 +61,8 @@ async def generate_ideas(
         ideas = await orchestrator.generate_ideas(
             topic=request.topic,
             constraints=request.constraints,
-            num_ideas=request.num_ideas or 3
+            num_ideas=request.num_ideas or 3,
+            model_settings=request.model_settings
         )
         
         generation_id = str(uuid.uuid4())
@@ -97,23 +98,18 @@ async def iterate_idea(
     try:
         logger.info(f"Iterating on idea: {request.idea_id}")
         
-        # Get existing idea (would normally fetch from database)
-        # For now, we'll create a mock idea
-        existing_idea = IdeaSnapshot(
-            id=request.idea_id,
-            title="Sample Idea",
-            description="Sample description",
-            market_analysis="Sample market analysis",
-            feasibility_score=0.5,
-            novelty_score=0.5,
-            created_at=datetime.utcnow()
-        )
+        # Get existing idea from persistence
+        existing_idea = await orchestrator.persistence.get_idea(request.idea_id)
+        
+        if not existing_idea:
+            raise HTTPException(status_code=404, detail=f"Idea not found: {request.idea_id}")
         
         # Iterate on the idea
         improved_idea = await orchestrator.iterate_idea(
             idea=existing_idea,
             feedback=request.feedback,
-            iteration_type=request.iteration_type
+            iteration_type=request.iteration_type,
+            model_settings=request.model_settings
         )
         
         iteration_id = str(uuid.uuid4())
@@ -121,7 +117,7 @@ async def iterate_idea(
         logger.info(f"Iterated idea with ID: {iteration_id}")
         
         return IterateResponse(
-            idea=improved_idea,
+            updated_idea=improved_idea,
             iteration_id=iteration_id,
             created_at=datetime.utcnow()
         )

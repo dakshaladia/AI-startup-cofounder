@@ -117,21 +117,16 @@ export default function UploadArea() {
   return (
     <div className="space-y-6">
       {/* Drop Zone */}
-      <div
-        {...getRootProps()}
-        className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-          isDragActive
-            ? 'border-primary-500 bg-primary-50'
-            : 'border-gray-300 hover:border-gray-400'
-        }`}
-      >
-        <input {...getInputProps()} />
-        <CloudArrowUpIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-lg font-medium text-gray-900 mb-2">
-          {isDragActive ? 'Drop files here' : 'Drag & drop files here'}
-        </p>
-        <p className="text-gray-500">
-          or click to select files (PDF, images, text documents)
+      <div className="text-center">
+        <button
+          {...getRootProps()}
+          className="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        >
+          <input {...getInputProps()} />
+          Upload Document
+        </button>
+        <p className="text-sm text-gray-500 mt-3">
+          or drag and drop files here
         </p>
       </div>
 

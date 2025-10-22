@@ -18,6 +18,9 @@ logger = get_logger(__name__)
 class PersistenceService:
     """Service for persisting data to database and vector store."""
     
+    # Class-level storage to persist across instances
+    _ideas_store: Dict[str, Dict[str, Any]] = {}
+    
     def __init__(self):
         self.db_client = None
         self.vector_client = None
@@ -297,13 +300,14 @@ class PersistenceService:
     
     async def _save_idea_to_db(self, idea: IdeaSnapshot) -> str:
         """Save idea to database."""
-        # Mock implementation
+        # Store in memory (mock implementation)
+        self._ideas_store[idea.id] = idea.model_dump()
         return idea.id
     
     async def _get_idea_from_db(self, idea_id: str) -> Optional[Dict[str, Any]]:
         """Get idea from database."""
-        # Mock implementation
-        return None
+        # Retrieve from memory (mock implementation)
+        return self._ideas_store.get(idea_id)
     
     async def _get_ideas_from_db(
         self,

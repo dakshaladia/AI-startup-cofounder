@@ -5,11 +5,15 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'AI Startup Co-Founder',
-  description: 'Multimodal AI Startup Co-Founder with multi-agent pipeline',
+  title: 'Idea Generalist',
+  description: 'AI Startup Co-Founder with multi-agent pipeline',
   keywords: ['AI', 'startup', 'co-founder', 'multimodal', 'ideas', 'innovation'],
   authors: [{ name: 'AI Startup Co-Founder Team' }],
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -20,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-white">
           {children}
         </div>
       </body>

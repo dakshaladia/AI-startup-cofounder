@@ -22,9 +22,10 @@ interface Idea {
 
 interface IdeaTimelineProps {
   ideas: Idea[]
+  onViewDetails?: (idea: Idea) => void
 }
 
-export default function IdeaTimeline({ ideas }: IdeaTimelineProps) {
+export default function IdeaTimeline({ ideas, onViewDetails }: IdeaTimelineProps) {
   const pipelineSteps = [
     {
       id: 'market_analysis',
@@ -202,7 +203,10 @@ export default function IdeaTimeline({ ideas }: IdeaTimelineProps) {
 
           {/* Action Buttons */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-            <button className="btn btn-secondary">
+            <button 
+              className="btn btn-secondary"
+              onClick={() => onViewDetails?.(idea)}
+            >
               View Details
             </button>
             <button className="btn btn-primary">
