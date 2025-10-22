@@ -21,7 +21,9 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "https://ai-startup-cofounder-1upj-8f537ml1e-daksha-ladias-projects.vercel.app",
-        "https://*.vercel.app"
+        "https://ai-startup-cofounder-1upj.vercel.app",
+        "https://*.vercel.app",
+        "*"  # Allow all origins for development
     ],
     allow_credentials=True,
     allow_methods=["*"],
