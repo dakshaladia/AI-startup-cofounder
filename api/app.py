@@ -20,7 +20,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://ai-startup-cofounder-1upj.vercel.app",  # Your actual frontend URL
+        "https://ai-startup-cofounder-1upj-8f537ml1e-daksha-ladias-projects.vercel.app",
         "https://*.vercel.app"
     ],
     allow_credentials=True,
@@ -81,10 +81,10 @@ async def generate_ideas(request: GenerateRequest):
                 "id": "idea_1",
                 "title": f"AI-powered {request.topic} solution",
                 "description": f"An innovative AI solution for {request.topic} that leverages machine learning to solve complex problems.",
-                "overall_score": 8.5,
-                "feasibility_score": 7.8,
-                "novelty_score": 9.2,
-                "market_signal_score": 8.1,
+                "overall_score": 0.85,
+                "feasibility_score": 0.78,
+                "novelty_score": 0.92,
+                "market_signal_score": 0.81,
                 "market_analysis": {
                     "market_size": "$2.5B",
                     "growth_rate": "15%",
@@ -128,10 +128,10 @@ async def iterate_idea(request: IterateRequest):
             "id": request.idea_id,
             "title": f"Improved AI-powered solution",
             "description": f"Enhanced version incorporating feedback: {request.feedback}",
-            "overall_score": 9.1,
-            "feasibility_score": 8.5,
-            "novelty_score": 9.5,
-            "market_signal_score": 8.8,
+            "overall_score": 0.91,
+            "feasibility_score": 0.85,
+            "novelty_score": 0.95,
+            "market_signal_score": 0.88,
             "market_analysis": {
                 "market_size": "$3.2B",
                 "growth_rate": "18%",
@@ -174,10 +174,10 @@ async def get_idea(idea_id: str):
             "id": idea_id,
             "title": "Sample AI Startup Idea",
             "description": "A comprehensive AI solution for modern businesses",
-            "overall_score": 8.7,
-            "feasibility_score": 8.2,
-            "novelty_score": 9.0,
-            "market_signal_score": 8.5,
+            "overall_score": 0.87,
+            "feasibility_score": 0.82,
+            "novelty_score": 0.90,
+            "market_signal_score": 0.85,
             "market_analysis": {
                 "market_size": "$2.8B",
                 "growth_rate": "16%",
