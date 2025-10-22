@@ -53,6 +53,7 @@ export default function HomePage() {
     setIsGenerating(true)
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      console.log('[DEBUG] Using API URL:', apiUrl)
       
       const response = await fetch(`${apiUrl}/api/v1/ideas/generate`, {
         method: 'POST',
@@ -97,6 +98,7 @@ export default function HomePage() {
     setIsIterating(true)
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      console.log('[DEBUG] Using API URL:', apiUrl)
       
       const response = await fetch(`${apiUrl}/api/v1/ideas/iterate`, {
         method: 'POST',
