@@ -594,7 +594,7 @@ export default function HomePage() {
                           {Object.entries(selectedIdea.synthesizer_output.revenue_projections).map(([year, data]) => (
                             <div key={year} className="bg-white p-2 rounded text-center">
                               <p className="text-xs text-gray-600">{year.replace('year', 'Year ')}</p>
-                              <p className="text-lg font-bold text-green-700">${typeof data === 'object' ? data.revenue : data}</p>
+                              <p className="text-lg font-bold text-green-700">${typeof data === 'object' ? (data as any).revenue : data}</p>
                             </div>
                           ))}
                         </div>
