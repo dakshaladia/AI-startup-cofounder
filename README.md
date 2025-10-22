@@ -1,4 +1,4 @@
-# AI Startup Cofounder
+# Idea Building With multiple agents using AI
 
 An intelligent platform that helps entrepreneurs discover, evaluate, and refine startup ideas using AI-powered agents and market analysis.
 
