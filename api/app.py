@@ -20,7 +20,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://your-frontend.vercel.app",  # Replace with your actual frontend URL
+        "https://ai-startup-cofounder-1upj.vercel.app",  # Your actual frontend URL
         "https://*.vercel.app"
     ],
     allow_credentials=True,
@@ -73,6 +73,7 @@ async def generate_ideas(request: GenerateRequest):
     """
     try:
         logger.info(f"Generating ideas for topic: {request.topic}")
+        print(f"DEBUG: Received request for topic: {request.topic}")
         
         # Mock response for now - replace with actual orchestrator logic
         mock_ideas = [
