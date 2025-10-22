@@ -74,7 +74,7 @@ export default function HomePage() {
       const data = await response.json()
       
       // Transform the API response to match our UI structure
-      const ideas = data.ideas.map((idea: any) => ({
+      const ideas = data.map((idea: any) => ({
         ...idea,
         created_at: idea.created_at || new Date().toISOString()
       }))
