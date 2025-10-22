@@ -1,5 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 import os
@@ -23,6 +24,31 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Additional custom CORS middleware to ensure headers are always added
+@app.middleware("http")
+async def add_cors_headers(request: Request, call_next):
+    # Handle OPTIONS preflight requests explicitly
+    if request.method == "OPTIONS":
+        return JSONResponse(
+            content={},
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Max-Age": "600",
+            }
+        )
+    
+    # Process the request
+    response = await call_next(request)
+    
+    # Add CORS headers to response
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    
+    return response
 
 # Pydantic models
 class GenerateRequest(BaseModel):
@@ -51,6 +77,15 @@ class IdeaResponse(BaseModel):
     critic_output: Dict[str, Any]
     pm_refiner_output: Dict[str, Any]
     synthesizer_output: Dict[str, Any]
+
+# Add explicit OPTIONS handler for CORS preflight
+@app.options("/api/v1/ideas/generate")
+async def options_generate():
+    return {}
+
+@app.options("/api/v1/ideas/iterate")
+async def options_iterate():
+    return {}
 
 # Health check endpoint
 @app.get("/")
