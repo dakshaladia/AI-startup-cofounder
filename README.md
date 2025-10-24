@@ -1,4 +1,4 @@
-# AI Startup Cofounder
+# Idea Building With multiple agents using AI
 
 An intelligent platform that helps entrepreneurs discover, evaluate, and refine startup ideas using AI-powered agents and market analysis.
 
@@ -161,6 +161,7 @@ For support and questions:
 - Create an issue in the repository
 - Check the documentation in the `docs/` folder
 - Review the API documentation at `/docs` endpoint
+<<<<<<< HEAD
 
 ## 🔮 Roadmap & Future Work
 
@@ -246,3 +247,5 @@ For support and questions:
 - [ ] **Marketplace**: Third-party app ecosystem
 - [ ] **Consulting Services**: Expert advisory services
 - [ ] **Training Programs**: Educational content and courses
+=======
+>>>>>>> origin/main
