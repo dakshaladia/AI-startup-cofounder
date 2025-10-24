@@ -31,10 +31,10 @@ The platform includes several specialized AI agents:
 
 - **Frontend**: Next.js, React, TypeScript, Tailwind CSS
 - **Backend**: FastAPI, Python
-- **AI/ML**: OpenAI API, Local LLM support
-- **Vector Search**: FAISS
-- **Infrastructure**: Docker, Kubernetes, Terraform
-- **Data Processing**: Custom pipelines for various data sources
+- **AI/ML**: Google Gemini API, OpenAI API, Custom LLM wrappers
+- **Vector Search**: FAISS (local)
+- **Infrastructure**: Docker, Vercel
+- **Storage**: In-memory (database integration planned for future)
 
 ## 🚀 Quick Start
 
@@ -70,20 +70,18 @@ The platform includes several specialized AI agents:
 ## 📁 Project Structure
 
 ```
-├── frontend/           # Next.js web application
-│   ├── web/           # Main web app
-│   └── demo/          # Demo application
-├── services/          # Backend services
-│   ├── agents/        # AI agent services
-│   ├── backend/       # API service
-│   ├── embeddings/    # Vector search service
-│   ├── evaluator/     # Scoring service
-│   └── ingestion/     # Data processing
-├── infra/             # Infrastructure as code
-│   ├── k8s/          # Kubernetes manifests
-│   └── terraform/    # Terraform configurations
-├── docs/             # Documentation
-└── tests/            # Test suites
+├── api/              # Vercel serverless API
+├── frontend/         # Next.js web application
+│   ├── web/         # Main web app
+│   └── demo/        # Demo application
+├── services/        # Backend services
+│   ├── agents/      # AI agent services
+│   ├── backend/     # API service
+│   ├── embeddings/  # Vector search service
+│   ├── evaluator/   # Scoring service
+│   └── ingestion/   # Data processing
+├── docs/            # Documentation
+└── tools/           # Development tools
 ```
 
 ## 🔧 Development
@@ -130,25 +128,20 @@ python orchestrator.py
 
 ## 🧪 Testing
 
+> **Note**: Test suite is planned for future implementation. Currently in active development phase.
+
+To contribute tests when available:
 ```bash
-# Run unit tests
-pytest tests/unit/
-
-# Run integration tests
-pytest tests/integration/
-
-# Run all tests
-pytest
+pytest tests/
 ```
 
 ## 📈 Monitoring
 
-The application includes comprehensive logging and monitoring:
+The application includes structured logging:
 
-- Structured logging across all services
-- Performance metrics
-- Error tracking
-- Analytics dashboard
+- Structured logging across all services using `structlog`
+- Error tracking and debugging support
+- Agent execution tracking
 
 ## 🤝 Contributing
 
@@ -171,17 +164,15 @@ For support and questions:
 
 ## 🔮 Roadmap & Future Work
 
-### **Phase 1: Database Integration & Document Pipeline (Q1 2024)**
+### **Phase 1: Database Integration & Persistence (Priority)**
 - [ ] **PostgreSQL Integration**: Replace in-memory storage with real database persistence
+- [ ] **Data Persistence**: Ideas, agent outputs, and feedback survive restarts
 - [ ] **User Management**: Multi-user authentication and data isolation
-- [ ] **Data Persistence**: Ideas, agent outputs, and user sessions survive restarts
 - [ ] **Document-to-Idea Pipeline**: Connect uploaded documents to idea generation
+- [ ] **Vector Search Enhancement**: Connect FAISS to persistent storage
 - [ ] **Market Research Integration**: Use uploaded reports for enhanced market analysis
-- [ ] **Technical Validation**: Validate ideas against uploaded patents/tech docs
-- [ ] **Competitive Intelligence**: Incorporate competitor data from uploaded sources
-- [ ] **Revenue Validation**: Use uploaded market data for realistic projections
-- [ ] **Vector Search**: Semantic search across all ideas and documents
 - [ ] **Analytics Database**: Track user behavior, idea performance, and system metrics
+- [ ] **Backup & Recovery**: Automated database backups and disaster recovery
 
 ### **Phase 2: Advanced AI Features (Q2 2024)**
 - [ ] **Multi-Modal Analysis**: Process images, videos, and documents together
@@ -212,16 +203,14 @@ For support and questions:
 - [ ] **Cultural Adaptation**: Region-specific business models
 
 ### **Technical Improvements**
-- [ ] **Database Migration**: Replace in-memory storage with PostgreSQL persistence
-- [ ] **Performance**: Sub-second idea generation
-- [ ] **Scalability**: Handle 10,000+ concurrent users
-- [ ] **Reliability**: 99.9% uptime SLA
-- [ ] **Security**: Enterprise-grade security features
+- [ ] **Test Suite**: Comprehensive unit and integration tests
+- [ ] **CI/CD Pipeline**: Automated testing and deployment
+- [ ] **Performance**: Optimize idea generation latency
+- [ ] **Scalability**: Support for multiple concurrent users
+- [ ] **Error Handling**: Robust error recovery mechanisms
 - [ ] **Monitoring**: Advanced observability and alerting
-- [ ] **Data Architecture**: Proper database schema for ideas, users, documents, and analytics
-- [ ] **Backup & Recovery**: Automated database backups and disaster recovery
-- [ ] **Connection Pooling**: Optimize database connections for high concurrency
-- [ ] **Database Indexing**: Optimize query performance with proper indexes
+- [ ] **API Documentation**: Interactive API docs and examples
+- [ ] **Code Quality**: Linting, type checking, and code coverage
 
 ### **AI/ML Enhancements**
 - [ ] **Custom Models**: Industry-specific AI training

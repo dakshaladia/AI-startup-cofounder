@@ -8,8 +8,6 @@ pydantic==2.5.0
 # LLM and AI
 google-generativeai==0.8.3
 openai==1.6.1
-langchain==0.0.350
-langchain-openai==0.0.2
 transformers==4.36.0
 torch==2.6.0
 
@@ -18,15 +16,11 @@ httpx==0.25.2
 aiohttp==3.9.1
 requests==2.31.0
 
-# Database and storage
-asyncpg==0.29.0
-redis==5.0.1
+# File handling
 aiofiles==23.2.1
 
-# Vector databases
+# Vector databases (local only)
 faiss-cpu==1.12.0
-pinecone-client==2.2.4
-weaviate-client==3.25.3
 
 # Authentication and security
 python-jose[cryptography]==3.3.0
